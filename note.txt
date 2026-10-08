@@ -1,0 +1,64 @@
+student_attendance/
+│
+├── manage.py
+├── student_attendance/
+│
+├── accounts/
+│   ├── models.py
+│   ├── serializer.py
+│   ├── views.py
+│   └── urls.py
+│
+└── students/
+    ├── models.py
+    ├── serializer.py
+    ├── views.py
+    └── urls.py
+
+--------------working flow----------
+
+                 STUDENT ATTENDANCE API
+                         │
+                         ▼
+                 User Signup / Login
+                         │
+                         ▼
+                  Token Authentication
+                         │
+                         ▼
+                 ┌──────────────────┐
+                 │   Student Module │
+                 └──────────────────┘
+                         │
+             ┌───────────┴───────────┐
+             ▼                       ▼
+       Add Student              View Students
+             │                       │
+             ▼                       ▼
+       Update Student             Search
+             │
+             ▼
+       Delete Student
+                         │
+                         ▼
+                 Attendance Module
+                         │
+             ┌───────────┴───────────┐
+             ▼                       ▼
+       Mark Attendance         View Attendance
+       Present / Absent              │
+             │                       ▼
+             │                 Attendance History
+             │                       │
+             └───────────┬───────────┘
+                         ▼
+                 Attendance Percentage
+
+from django.contrib.auth import authenticate
+
+    authenticate() checks whether the username and password are correct.
+
+from rest_framework.authtoken.models import Token
+
+    Token is used to create/get an authentication token for the user.
+    token, created = Token.objects.get_or_create(user=user)
